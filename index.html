@@ -1,0 +1,254 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testing new observable - EN</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"></script>
+</head>
+<body>
+<div>
+      <form id="lead-form" class="container needs-validation" novalidate>
+  <div class="mb-3">
+  <div class="form-row">
+    <div class="mb-3 col-md-6">
+      <label for="firstName" class="form-label">First name</label>
+
+      <input type="text" class="form-control" id="firstName" name="firstName" placeholder="First name" required>
+      <div class="invalid-feedback">First name is required</div>
+    </div>
+    <div class="mb-3 col-md-6">
+      <label for="lastName" class="form-label">Last name</label>
+      <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Last name" required>
+     <div class="invalid-feedback">Last name is required</div>
+    </div>
+  </div>
+  <div class="mb-3 col-md-6">
+    <label for="email" class="form-label">Email</label>
+    <input type="email" class="form-control" id="email" name="email" placeholder="name@mail.com"
+    required>
+    <div class="invalid-feedback">Email is required</div>
+  </div>
+  </div>
+    <div class="mb-3 col-md-4">
+      <label for="clientType" class="form-label">Legal status</label>
+      <select id="clientType" name="clientType" class="form-control"
+      required>
+        <option selected="">Person</option>
+        <option>Company</option>
+      </select>
+      <div class="invalid-feedback">Selecting client type is required</div>
+    </div>
+    <div id="compNameDiv" class="mb-3 col-md-4" style="display:none;">
+      <label for="companyName" class="form-label">Company name</label>
+      <input type="text" class="form-control" id="companyName" name="companyName"
+      required>
+      <div class="invalid-feedback">Company name is required</div>
+    </div>
+
+
+    <script>
+    // Handle switching beetween clientTypes: 'Person' and 'Company'
+const el = document.getElementById('clientType');
+
+const box = document.getElementById('compNameDiv');
+
+el.addEventListener('change', function handleChange(event) {
+if (event.target.value === 'Company') {
+  box.style.display = 'block';
+} else {
+  box.style.display = 'none';
+}
+});
+</script>
+      <!--Section for case specific attributes-->
+  
+
+<div class="mb-3 col-md-4">
+    <label for="Select" class="form-label">Select: </label>
+
+    <select class="form-select" name="custom__Select"
+    >
+        >
+      <option id=" Option 1" value="option0">Option 1</option>
+
+    </select>
+</div>
+
+
+<div class="mb-3 col-md-4">
+    <label for="Select" class="form-label">Select: </label>
+
+    <select class="form-select" name="custom__Select"
+    >
+        >
+      <option id=" Option 1" value="option0">Option 1</option>
+
+    </select>
+</div>
+
+
+<div class="mb-3 col-md-4">
+    <label for="Select" class="form-label">Select: </label>
+
+    <select class="form-select" name="custom__Select"
+    >
+        >
+      <option id=" Option 1" value="option0">Option 1</option>
+
+    </select>
+</div>
+
+
+<fieldset>
+<legend style="font-size: inherit;">Checkbox</legend>
+
+<div>
+      <input type="checkbox" id="Option 1" name="Option 1" unchecked>
+      <label for="scales">Option 1</label>
+  </div>
+</fieldset>
+
+
+
+<div class="mb-3 col-md-4">
+    <label for="Select" class="form-label">Select: </label>
+
+    <select class="form-select" name="custom__Select"
+    >
+        >
+      <option id=" Option 1" value="option0">Option 1</option>
+
+    </select>
+</div>
+
+
+<div class="mb-3 col-md-4">
+    <label for="Select" class="form-label">Select: </label>
+
+    <select class="form-select" name="custom__Select"
+    >
+        >
+      <option id=" Option 1" value="option0">Option 1</option>
+
+    </select>
+</div>
+
+
+<div class="mb-3 col-md-4">
+    <label for="Select" class="form-label">Select: </label>
+
+    <select class="form-select" name="custom__Select"
+    >
+        >
+      <option id=" Option 1" value="option0">Option 1</option>
+
+    </select>
+</div>
+
+
+<fieldset>
+<legend style="font-size: inherit;">Checkbox</legend>
+
+<div>
+      <input type="checkbox" id="Option 1" name="Option 1" unchecked>
+      <label for="scales">Option 1</label>
+  </div>
+</fieldset>
+
+
+<script>
+
+      // Validation of specified lead form elements - required, min/max length
+      const textInputs = document.querySelectorAll('input[name*="custom__"]')
+
+      textInputs.forEach(input => {
+        input.addEventListener('keyup', (e) => {
+          const errorContainer = input.nextElementSibling
+
+
+          if (input.validity.valueMissing) { // required
+            errorContainer.textContent = 'This field is required'
+          } else if (input.validity.tooShort) { // too short
+            errorContainer.textContent = 'Minimum number of characters: ' + input.getAttribute('minlength') + '.'
+          } else if (input.validity.tooLong) { // too long
+            errorContainer.textContent = 'Maximum number of characters: ' + input.getAttribute('maxlength') + '.'
+          }
+        })
+      })
+    </script>
+  <!-- Section for GDPR consent -->
+  <div class="mb-3 col-md-4">
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="gdprCheck"
+      required>
+        <p>Some generic GDPR</p>
+    </div>
+    <div class="invalid-feedback">GDPR agreetment is required</div>
+  </div>
+
+  <div class="mb-3 col-md-4">
+    <button type="submit" id="submitBtn" class="btn btn-primary px-4" disabled>Submit</button>
+  </div>
+</form>
+
+<script>
+  const checker = document.getElementById('gdprCheck');
+  const sendbtn = document.getElementById('submitBtn');
+  checker.onchange = function () {
+    sendbtn.disabled = !this.checked;
+  };
+
+  const form = document.getElementById('lead-form');
+
+  form.addEventListener('submit', function (e) {
+    // When the form is invalid, do not send a POST request and stop default & propagation
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+      form.classList.add('was-validated');
+      return
+    }
+
+    event.preventDefault();
+
+    const formData = new FormData(form);
+
+    const objectData = {
+      userLanguage: "en",
+      caseSpecificFields: {}
+    };
+
+    formData.forEach(function (value, key) {
+      if (key.startsWith("custom__")) {
+        const customKey = key.slice(8);
+        objectData.caseSpecificFields[customKey] = value;
+      } else {
+        objectData[key] = value;
+      }
+    });
+
+
+    const jsonData = JSON.stringify(objectData);
+    const submitUrl = "https://apcam-be.azurewebsites.net/api/client-registrations/public/lead-form-registration/case/1";
+
+    fetch(submitUrl, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: jsonData,
+    })
+  });
+</script>
+  
+      </div>
+    </body>
+  </html>
+    
